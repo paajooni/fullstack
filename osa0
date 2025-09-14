@@ -1,4 +1,4 @@
 ```mermaid
-  graph TALLENNA;
-  A-->B;
+  graph TD;
+    A-->B;
 ```
