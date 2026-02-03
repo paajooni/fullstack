@@ -5,10 +5,12 @@ sequenceDiagram
     
     browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
     activate server
+    Note right of browser: Luo uuden noten
     server-->>browser: HTML document
     deactivate server
+    Note right of browser: Ei saa oikeasti responsea, koska kutsu uudelleenohjattiin
 
-    Note right of browser: Luo uuden noten
+    
 
     browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
     activate server
@@ -34,3 +36,4 @@ sequenceDiagram
 
     Note right of browser: The browser executes the callback function that renders the notes 
 ```
+
