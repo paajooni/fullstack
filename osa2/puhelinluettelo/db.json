@@ -1,0 +1,44 @@
+{
+  "persons": [
+    {
+      "name": "Arto Hellas",
+      "number": "045-987987",
+      "id": "1"
+    },
+    {
+      "name": "Ada Lovelace",
+      "number": "39-44-5323523",
+      "id": "2"
+    },
+    {
+      "name": "Dan Abramov",
+      "number": "12-43-234345",
+      "id": "3"
+    },
+    {
+      "name": "Mary Poppendieck",
+      "number": "39-23-6423122",
+      "id": "4"
+    },
+    {
+      "id": "43b2",
+      "name": "Pekka Pouta",
+      "number": "050-52459123"
+    },
+    {
+      "id": "334c",
+      "name": "Sakke Sade",
+      "number": "040-98769876"
+    },
+    {
+      "id": "7d9e",
+      "name": "Mikko Myrsky",
+      "number": "045-0259215"
+    },
+    {
+      "id": "f57c",
+      "name": "Veikka Lappalainen",
+      "number": "044-4012958"
+    }
+  ]
+}
