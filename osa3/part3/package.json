@@ -1,0 +1,25 @@
+{
+  "name": "notebackend",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/paajooni/fullstack#readme",
+  "bugs": {
+    "url": "https://github.com/paajooni/fullstack/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paajooni/fullstack.git"
+  },
+  "license": "ISC",
+  "author": "Joonas Paasovaara",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js",
+    "test": "echo \\\"Error: no test specified\\\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
