@@ -14,29 +14,30 @@ const url = `mongodb+srv://paajooni:${password}@puhelinluettelo.ugpqzqt.mongodb.
 mongoose.set('strictQuery', false)
 mongoose.connect(url, { family: 4 })
 
-const puhelinnumeroSchema = new mongoose.Schema({
+const personSchema = new mongoose.Schema({
   name: String,
   number: String,
 })
 
-const Puhelinnumero = mongoose.model('Puhelinnumero', puhelinnumeroSchema)
+const Person = mongoose.model('Person', personSchema)
 
-const puhelinnumero = new Puhelinnumero({
+const person = new Person({
   name: process.argv[3],
   number: process.argv[4]
 })
+
 if (process.argv.length === 5) {
-  puhelinnumero.save().then(result => {
+  person.save().then(result => {
     console.log(`added ${process.argv[3]} number ${process.argv[4]} to phonebook`)
     mongoose.connection.close()
   })
 }
 
 if (process.argv.length === 3) {
-  Puhelinnumero.find({}).then(result => {
+  Person.find({}).then(result => {
     console.log("phonebook:")
-    result.forEach(puhelinnumero => {
-      console.log(puhelinnumero.name, puhelinnumero.number)
+    result.forEach(person => {
+      console.log(person.name, person.number)
       mongoose.connection.close()
     })
   })
