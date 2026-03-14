@@ -1,0 +1,7 @@
+PUT https://puhelinluettelo-49w0.onrender.com/api/persons/1
+Content-Type: application/json
+
+{
+    "name": "Veikka Kortelainen",
+    "number": "0404466867"
+}
