@@ -1,1 +1,1 @@
-GET https://puhelinluettelo-49w0.onrender.com/api/persons
+GET http://localhost:3001/api/persons/

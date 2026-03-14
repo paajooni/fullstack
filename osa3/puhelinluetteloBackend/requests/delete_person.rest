@@ -1,1 +1,1 @@
-DELETE https://puhelinluettelo-49w0.onrender.com/api/persons/4
+DELETE https://puhelinluettelo-49w0.onrender.com/api/persons/69b56c19d9d9c058f4e6b8fd

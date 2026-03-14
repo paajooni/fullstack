@@ -1,7 +1,7 @@
-POST https://puhelinluettelo-49w0.onrender.com/api/persons
+POST http://localhost:3001/api/persons
 Content-Type: application/json
 
 {
-    "name": "Veikka Kortelainen",
-    "number": "0404466872"
+    "name": "Jap jap",
+    "number": "040-676869"
 }

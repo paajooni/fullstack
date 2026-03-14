@@ -1,7 +1,7 @@
-PUT https://puhelinluettelo-49w0.onrender.com/api/persons/1
+PUT http://localhost:3001/api/persons/69b54f6cf1f76b74ed61bb71
 Content-Type: application/json
 
 {
     "name": "Veikka Kortelainen",
-    "number": "0404466867"
+    "number": "040-696867"
 }
