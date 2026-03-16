@@ -58,7 +58,7 @@ const Persons = ({ personsToShow, deletePerson }) => {
 }
 
 
-const App = (props) => {
+const App = () => {
   const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
@@ -138,7 +138,7 @@ const App = (props) => {
               setSuccessMessage(null)
             }, 5000)
         })
-        .catch(error => {
+        .catch(() => {
           setErrorMessage(`Information of ${person.name} has already been removed from server`)
           setTimeout(() => {
             setErrorMessage(null)

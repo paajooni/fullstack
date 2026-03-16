@@ -1,5 +1,5 @@
-const dns = require('node:dns');
-dns.setServers(['8.8.8.8', '8.8.4.4']);
+const dns = require('node:dns')
+dns.setServers(['8.8.8.8', '8.8.4.4'])
 const mongoose = require('mongoose')
 
 if (process.argv.length < 3) {
@@ -27,7 +27,7 @@ const person = new Person({
 })
 
 if (process.argv.length === 5) {
-  person.save().then(result => {
+  person.save().then(() => {
     console.log(`added ${process.argv[3]} number ${process.argv[4]} to phonebook`)
     mongoose.connection.close()
   })
@@ -35,7 +35,7 @@ if (process.argv.length === 5) {
 
 if (process.argv.length === 3) {
   Person.find({}).then(result => {
-    console.log("phonebook:")
+    console.log('phonebook:')
     result.forEach(person => {
       console.log(person.name, person.number)
       mongoose.connection.close()
