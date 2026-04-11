@@ -62,10 +62,10 @@ test('a valid blog can be added', async () => {
     .expect(201)
     .expect('Content-Type', /application\/json/)
 
-  const notesAtEnd = await helper.notesInDb()
-  assert.strictEqual(notesAtEnd.length, helper.initialBlogs.length + 1)
+  const blogsAtEnd = await helper.blogsInDb()
+  assert.strictEqual(blogsAtEnd.length, helper.initialBlogs.length + 1)
 
-  const contents = notesAtEnd.map(n => n.title)
+  const contents = blogsAtEnd.map(n => n.title)
   assert(contents.includes('wow a new blog'))
 })
 
@@ -99,7 +99,7 @@ test('blog without title is not added', async () => {
     .send(newBlog)
     .expect(400)
 
-  const blogsAtEnd = await helper.notesInDb()
+  const blogsAtEnd = await helper.blogsInDb()
 
   assert.strictEqual(blogsAtEnd.length, helper.initialBlogs.length)
 })
@@ -116,9 +116,42 @@ test('blog without url is not added', async () => {
     .send(newBlog)
     .expect(400)
 
-  const blogsAtEnd = await helper.notesInDb()
+  const blogsAtEnd = await helper.blogsInDb()
 
   assert.strictEqual(blogsAtEnd.length, helper.initialBlogs.length)
+})
+
+
+test('deletion of a blog', async () => {
+  const blogsAtStart = await helper.blogsInDb()
+  const blogToDelete = blogsAtStart[0]
+
+  await api.delete(`/api/blogs/${blogToDelete.id}`).expect(204)
+
+  const blogsAtEnd = await helper.blogsInDb()
+  
+  const contents = blogsAtEnd.map(n => n.title)
+  assert(!contents.includes(blogToDelete.title))
+
+  assert.strictEqual(blogsAtEnd.length, helper.initialBlogs.length - 1)
+})
+
+
+test('changing a blog changes the likes', async () => {
+  const blogsAtStart = await helper.blogsInDb()
+  const blogToChange = blogsAtStart[0]
+
+  const changeBlogLikes = {
+    ...blogToChange,
+    likes: blogToChange.likes + 10
+  }
+
+  const response = await api
+    .put(`/api/blogs/${blogToChange.id}`)
+    .send(changeBlogLikes)
+    .expect(200)
+
+  assert.strictEqual(response.body.likes, blogToChange.likes + 10)
 })
 
 
