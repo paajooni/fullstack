@@ -1,9 +1,10 @@
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InBhc2kyIiwiaWQiOiI2OWZjZTkwMzk3ZWVlY2VjMTBmYTUwZWYiLCJpYXQiOjE3NzgxODI3MDIsImV4cCI6MTc3ODE4NjMwMn0.dYzUYV_sjip_cjzqmLGw12tKjk4F_6ai6RjvIQ5K0IM
 
 {
-    "title": "fullstack is hard",
-    "author": "Veikka Kortelainen",
-    "url": "yle.fi/fullstack",
-    "likes": 1000
+    "url": "mtv.fi/fullstack/pasi",
+    "title": "olen pasistack",
+    "author": "Pasi Pasila",
+    "likes": 5
 }

@@ -3,17 +3,17 @@ dns.setServers(['8.8.8.8', '8.8.4.4'])
 const mongoose = require('mongoose')
 
 const blogSchema = mongoose.Schema({
+  url: {
+    type: String,
+    required: true,
+    minlength: 1
+  },
   title: {
     type: String,
     required: true,
     minlength: 1
   },
   author: String,
-  url: {
-    type: String,
-    required: true,
-    minlength: 1
-  },
   likes: Number,
   user: {
     type: mongoose.Schema.Types.ObjectId,
