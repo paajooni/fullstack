@@ -20,7 +20,7 @@ const App = () => {
   useEffect(() => {
     blogService.getAll().then(blogs =>
       setBlogs( blogs )
-    )  
+    )
   }, [])
 
   useEffect(() => {
@@ -50,12 +50,49 @@ const App = () => {
     }
   }
 
+  const addLike = async (id, blogObject) => {
+    try {
+      const returnedBlog = await blogService.update(id, blogObject)
+      setBlogs(blogs.map(blog => {
+        if (blog.id !== id) {
+          return blog
+        } else {
+          return { ...returnedBlog, user: blog.user }
+        }
+      }))
+    } catch (execption) {
+      setErrorMessage('Error trying to update likes', execption)
+      setTimeout(() => {
+        setErrorMessage(null)
+      }, 5000)
+    }
+  }
+
+  const deleteBlog = async (id, blog) => {
+    if (window.confirm(`Remove blog ${blog.title} by ${blog.author}`)) {
+      try {
+        await blogService.remove(id)
+        setBlogs(blogs.filter(b => b.id !== id))
+        setSuccessMessage(`Blog ${blog.title} succesfully removed!`)
+        setTimeout(() => {
+          setSuccessMessage(null)
+        }, 5000)
+      } catch (execption) {
+        setErrorMessage('Error trying to remove blog', execption)
+        setTimeout(() => {
+          setErrorMessage(null)
+        }, 5000)
+      }
+    }
+  }
+
+
   const handleLogin = async event => {
     event.preventDefault()
-    
+
     try {
       const user = await loginService.login({
-        username, password 
+        username, password
       })
 
       window.localStorage.setItem(
@@ -82,8 +119,8 @@ const App = () => {
     setUser(null)
     setSuccessMessage('logged out')
     setTimeout(() => {
-        setSuccessMessage(null)
-      }, 5000)
+      setSuccessMessage(null)
+    }, 5000)
   }
 
 
@@ -97,20 +134,20 @@ const App = () => {
             value={username}
             onChange={({ target }) => setUsername(target.value)}
           />
-         </label>
-        </div>
-        <div>
-          <label>
+        </label>
+      </div>
+      <div>
+        <label>
             password
-            <input
-              type="password"
-              value={password}
-              onChange={({ target }) => setPassword(target.value)}
-            />
-          </label>
-        </div>
-        <button type="submit">login</button>
-      </form>
+          <input
+            type="password"
+            value={password}
+            onChange={({ target }) => setPassword(target.value)}
+          />
+        </label>
+      </div>
+      <button type="submit">login</button>
+    </form>
   )
 
   const blogForm = () => {
@@ -141,19 +178,26 @@ const App = () => {
 
       {!user && loginForm()}
       {user && (
-      <div>
-        <p>
-          {user.name} logged in
-          <button onClick={handleLogout}>logout</button>
-        </p>
-        <h2>create new</h2>
-        {blogForm()}
-      </div>
-    )}
-
-      {blogs.map(blog =>
-        <Blog key={blog.id} blog={blog} />
+        <div>
+          <p>
+            {user.name} logged in
+            <button onClick={handleLogout}>logout</button>
+          </p>
+          <h2>create new</h2>
+          {blogForm()}
+        </div>
       )}
+
+      {[...blogs]
+        .sort((a, b) => b.likes - a.likes)
+        .map(blog =>
+          <Blog
+            key={blog.id}
+            blog={blog}
+            addLike={addLike}
+            deleteBlog={deleteBlog}
+            user={user} />
+        )}
     </div>
   )
 }

@@ -55,7 +55,7 @@ blogsRouter.delete('/:id', middleware.userExtractor, async (request, response) =
     return response.status(404).json({ error: 'blog not found' })
   }
 
-  if (blog.user.toString() === decodedToken.id.toString()) {
+  if (blog.user.toString() === user.id.toString()) {
     await Blog.findByIdAndDelete(request.params.id)
     response.status(204).end()
   } else {
